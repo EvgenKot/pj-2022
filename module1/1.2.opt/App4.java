@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
-public class App {
+public class App4 {
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
-            int a = input.nextInt();
-            int b = input.nextInt();
+            int A = input.nextInt();
+            int B = input.nextInt();
 
-            System.out.println(a + b);
+            System.out.println(A * A + B * B);
         }
     }
 }
