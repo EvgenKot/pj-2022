@@ -1,21 +1,23 @@
 import java.util.Scanner;
 
 public class App9 {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int N = in.nextInt() + 1;
-        while (!IsPrime(N)) {
-            N++;
-        }
-        System.out.println(N);
-        in.close();
-    }
+    public static void main(String[] args){
+        try (Scanner in = new Scanner(System.in)) {
+            int A = in.nextInt();
+            int answer = 9;
 
-    public static boolean IsPrime(int n) {
-        for(int i = 2; i < n; i++) {
-            if (n % i == 0)
-                return false;
+            while (A > 0) {
+                int digit = A % 10;
+                if ( digit != 0)
+                {
+                    if (digit < answer)
+                    {
+                        answer = digit;
+                    }
+                }
+                A /= 10;
+            }
+            System.out.println(answer); 
         }
-        return true;
     }
 }
