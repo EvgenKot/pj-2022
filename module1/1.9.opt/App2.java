@@ -1,4 +1,4 @@
-public class MyMath {
+public class App2 {
     public static int min(int a, int b, int c, int d) {
             int min = a;
             if (b < min) {

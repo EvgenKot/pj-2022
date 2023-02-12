@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class App8 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         double a = in.nextDouble();

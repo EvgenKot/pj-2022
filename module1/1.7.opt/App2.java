@@ -1,11 +1,12 @@
 import java.util.Scanner;
 
-public class Main {
+public class App2 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int a, b, result = 0;
         a = in.nextInt();
         b = in.nextInt();
+        in.close();
         for (int i = 0; i < Math.abs(b); i++) {
             result += Math.abs(a);
         }
