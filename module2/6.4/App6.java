@@ -4,6 +4,10 @@ public class App6 {
     }    
 }
 
+interface Animal {
+    public String speak();
+}
+
 class Cat implements Animal {
     public String speak() {
         return "Miy";
