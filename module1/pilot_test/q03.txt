@@ -1,0 +1,37 @@
+Обратите внимание! Этот вопрос можно отправлять на проверку только два раза!
+
+Посчитайте значение выражения, состоящего из трех чисел и двух знаков "+" между ними через пробел. Чтение организуйте из стандартного потока ввода. Класс Scanner уже импортирован в программу. Результат занесите в новую переменную double result.
+
+Например, если вводится
+
+1 + 2.4 + 2
+
+то переменной result должно быть присвоено значение 5.4.
+
+Правильный по форме, но неправильный по содержанию ответ:
+
+double result = 0;
+
+Для проверки Вашего кода, он будет вставлен в следующий шаблон:
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        // Ваш ответ будет вставлен сюда
+
+        System.out.println(result);
+    }
+}
+
+
+Ответ:
+Scanner in = new Scanner(System.in);
+        String str = in.nextLine();
+        String[] numbers = str.split("\\+");
+        double result = 0;
+        for (String number : numbers) {
+            result += Double.parseDouble(number.trim());
+        }
+        in.close();
