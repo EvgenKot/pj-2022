@@ -1,71 +1,65 @@
 import java.util.Scanner;
 
 public class App1 {
-    static class SearchTree {
-        class Node {
-            public Node rightChild = null;
-            public Node leftChild = null;
-            public Node parent = null;
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-            public int value;
-            public int heightLeft = 0;
-            public int heightRight = 0;
-
-            public Node(int value, Node parent) {
-                this.value = value;
-                this.parent = parent;
-            }
+        TreeNode(int val) {
+            this.val = val;
         }
-
-        private Node root;
-
-        private Node insertNode(Node curNode, int value, Node parent) {
-            if (curNode == null) {
-                if (parent != null) {
-                    if (parent.value > value)
-                        parent.heightLeft++;
-                    else
-                        parent.heightRight++;
-                }
-                return new Node(value, parent);
-            }
-
-            if (value > curNode.value) {
-                curNode.rightChild = insertNode(curNode.rightChild, value, curNode);
-
-                if (curNode.parent != null && curNode.parent.value < value)
-                    curNode.parent.heightRight = curNode.heightRight + 1;
-            } else if (value < curNode.value) {
-                curNode.leftChild = insertNode(curNode.leftChild, value, curNode);
-                
-                if (curNode.parent != null && curNode.parent.value > value)
-                    curNode.parent.heightLeft = curNode.heightLeft + 1; 
-            }
-
-            return curNode;
-        }
-
-        public void add(int value) {
-            root = insertNode(root, value, null);
-        }
-
-        // public bool isBalanced() {
-
-        // }
-
     }
 
     public static void main(String[] args) {
-        SearchTree tree = new SearchTree();
-        Scanner in = new Scanner(System.in);
-        while (true) {
-            int x = in.nextInt();
-            if (x == 0)
-                break;
-
-            tree.add(x);
+        Scanner scanner = new Scanner(System.in);
+        int num;
+        TreeNode root = null;
+        while ((num = scanner.nextInt()) != 0) {
+            root = insert(root, num);
         }
-        in.close();
-        System.out.println("YES");
+        if (isBalanced(root)) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+
+        scanner.close();
+    }
+
+    static TreeNode insert(TreeNode root, int val) {
+        if (root == null) {
+            return new TreeNode(val);
+        }
+        if (val == root.val) {
+            return root;
+        }
+        if (val < root.val) {
+            root.left = insert(root.left, val);
+        } else {
+            root.right = insert(root.right, val);
+        }
+        return root;
+    }
+
+    static boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+        if (Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(root.left) && isBalanced(root.right)) {
+            return true;
+        }
+        return false;
+    }
+
+    static int height(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 }
